@@ -6,10 +6,6 @@ backend:
 media_folder: static/img
 public_folder: /img
 
-variables:
-- name: classes
-  value: ['code4arts-SP21', 'code4arts-FA20']
-
 collections:
   - name: 'class'
     label: 'Class'
@@ -44,6 +40,6 @@ collections:
         name: 'class',
         widget: 'relation',
         collection: 'class',
-        search_fields: 'title',
+        search_fields: ['title'],
         value_field: 'title'
       }
