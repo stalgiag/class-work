@@ -1,9 +1,11 @@
 import * as React from "react"
 import { Link, graphql } from "gatsby"
+import { GatsbyImage } from 'gatsby-plugin-image'
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import { PossibleTypeExtensionsRule } from "graphql"
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
@@ -30,22 +32,14 @@ const BlogIndex = ({ data, location }) => {
       <ol style={{ listStyle: `none` }}>
         {posts.map(post => {
           const title = post.frontmatter.title || post.fields.slug
-
           return (
             <li key={post.fields.slug}>
-              <article
-                className="post-list-item"
-                itemScope
-                itemType="http://schema.org/Article"
-              >
-                <header>
-                  <h2>
-                    <Link to={post.fields.slug} itemProp="url">
-                      <span itemProp="headline">{title}</span>
-                    </Link>
-                  </h2>
-                </header>
-              </article>
+              <Link to={post.fields.slug} itemProp="url">
+                <GatsbyImage className='class-thumb' image={post.frontmatter.thumbnail.childImageSharp.gatsbyImageData} />
+                <h2>
+                  <span itemProp="headline">{title}</span>
+                </h2>
+              </Link>
             </li>
           )
         })}
@@ -63,16 +57,20 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(filter: {fileAbsolutePath: {regex: "/(classes)/"  }}) {
       nodes {
         excerpt
         fields {
           slug
         }
         frontmatter {
-          date(formatString: "MMMM DD, YYYY")
           title
-          description
+          thumbnail {
+            childImageSharp {
+                gatsbyImageData(layout: CONSTRAINED)
+            }
+          }
+          alt
         }
       }
     }

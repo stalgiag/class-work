@@ -5,7 +5,7 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
-const ClassPageTemplate = ({ data, location }) => {
+const ProjectPageTemplate = ({ data, location }) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata?.title || `Title`
 
@@ -13,6 +13,7 @@ const ClassPageTemplate = ({ data, location }) => {
     <Layout location={location} title={siteTitle}>
       <Seo
         title={post.title}
+        description={post.description || post.excerpt}
       />
       <article
         className="blog-post"
@@ -36,10 +37,10 @@ const ClassPageTemplate = ({ data, location }) => {
   )
 }
 
-export default ClassPageTemplate
+export default ProjectPageTemplate
 
 export const pageQuery = graphql`
-  query ClassBySlug(
+  query ProjectBySlug(
     $id: String!
   ) {
     site {
