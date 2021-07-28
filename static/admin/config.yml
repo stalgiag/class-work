@@ -32,6 +32,7 @@ collections:
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: 'Image', name: 'thumbnail', widget: 'image'}
+      - { label: 'Author', name: 'author', widget: 'string'}
       - { label: "Alt Text", name: "alt", widget: "string" }
       - { label: "Link", name: "link", widget: "string" }
       - { label: "Description", name: "description", widget: "markdown" }
