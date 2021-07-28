@@ -1,0 +1,25 @@
+backend:
+  name: git-gateway
+  branch: main
+  
+media_folder: static/img
+public_folder: /img
+
+collections:
+  - name: 'class'
+    label: 'Class'
+    folder: 'content/classes'
+    create: true
+    slug: 'index'
+    media_folder: ''
+    public_folder: ''
+    path: '{{title}}/index'
+    editor:
+      preview: false
+    widget: "list"
+    fields:
+      - { label: "Title", name: "title", widget: "markdown" }
+      - { label: 'Image', name: 'thumbnail', widget: 'image'}
+      - { label: "Alt Text", name: "alt", widget: "string" }
+      - { label: 'Author', name: 'author', widget: 'string' }
+      - { label: 'Description', name: 'description', widget: 'markdown' }
