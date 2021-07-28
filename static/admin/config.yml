@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: stalgiag/class-work
   branch: main
   
 media_folder: static/img
