@@ -6,6 +6,10 @@ backend:
 media_folder: static/img
 public_folder: /img
 
+variables:
+- name: classes
+  value: ['code4arts-SP21', 'code4arts-FA20']
+
 collections:
   - name: 'class'
     label: 'Class'
@@ -17,10 +21,29 @@ collections:
     path: '{{title}}/index'
     editor:
       preview: false
-    widget: "list"
     fields:
       - { label: "Title", name: "title", widget: "markdown" }
       - { label: 'Image', name: 'thumbnail', widget: 'image'}
       - { label: "Alt Text", name: "alt", widget: "string" }
-      - { label: 'Author', name: 'author', widget: 'string' }
-      - { label: 'Description', name: 'description', widget: 'markdown' }
+  - name: 'project'
+    label: 'Project'
+    folder: 'content/projects'
+    create: true
+    slug: 'index'
+    media_folder: ''
+    public_folder: ''
+    path: '{{title}}/index'
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: 'Image', name: 'thumbnail', widget: 'image'}
+      - { label: "Alt Text", name: "alt", widget: "string" }
+      - { label: "Link", name: "link", widget: "string" }
+      - { label: "Description", name: "description", widget: "markdown" }
+      - {
+        label: 'Class',
+        name: 'class',
+        widget: 'relation',
+        collection: 'class',
+        search_fields: 'title',
+        value_field: 'title'
+      }
