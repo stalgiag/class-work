@@ -18,21 +18,9 @@ const ClassPageTemplate = ({ data, location }) => {
   console.log(projectsMarkdown);
   return (
     <Layout location={location} title={siteTitle}>
-      <article
-        className="blog-post"
-        itemScope
-        itemType="http://schema.org/Article"
-      >
-        <header>
-          <h1 itemProp="headline">{classTitle}</h1>
-          {/* <p>{post.frontmatter.date}</p> */}
-        </header>
-        {/* <section
-          dangerouslySetInnerHTML={{ __html: post.html }}
-          itemProp="articleBody"
-        /> */}
-        <hr />
-        <ol style={{ listStyle: `none` }}>
+      <h1 itemProp="headline">{classTitle}</h1>
+      <hr />
+      <ol style={{ listStyle: `none` }}>
         {projectsMarkdown.map(project => {
           const title = project.frontmatter.title || project.fields.slug;
           const author = project.frontmatter.author;
@@ -48,10 +36,9 @@ const ClassPageTemplate = ({ data, location }) => {
           )
         })}
       </ol>
-        <footer>
-          <Bio />
-        </footer>
-      </article>
+      <footer>
+        <Bio />
+      </footer>
     </Layout>
   )
 }
